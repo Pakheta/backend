@@ -1,6 +1,11 @@
 from rest_framework import serializers
-from .models import Bird, Birdset
+from .models import Bird, Birdset, Habitat
 
+
+class HabitatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Habitat
+        field = "__all__"
 
 class BirdSerializer(serializers.ModelSerializer):
     class Meta:
