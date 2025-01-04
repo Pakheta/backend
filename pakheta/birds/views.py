@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from .models import Bird, Birdset
 from .serializers import BirdSerializer, BirdsetSerializer
 import requests
+from django.db import connection
 
 class BirdListView(APIView):
     def get(self, request):
