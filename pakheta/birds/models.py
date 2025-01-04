@@ -40,11 +40,11 @@ class Birdset(models.Model):
     bird = models.ForeignKey(
         Bird,
         on_delete=models.CASCADE,
-        related_name="birds"
+        related_name="birdsets"  # Changed from "birds" to "birdsets"
     )
 
     image = models.ImageField(upload_to="images/")
-    audio = models.CharField(max_length=200)
+    audio = models.FileField(upload_to="audio/")
 
     def __str__(self):
         return self.bird.name
