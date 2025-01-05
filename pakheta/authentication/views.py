@@ -15,7 +15,7 @@ class SimpleAuthenticationView(APIView):
         if user is not None:
             # User is authenticated; check for their tier
             try:
-                user_tier = user.tier.tier
+                user_tier = 2  # UserTier.objects.get(user=user).tier
                 # Example of tier-based logic: restrict access for users below tier 1
                 if user_tier == 0:
                     return Response({

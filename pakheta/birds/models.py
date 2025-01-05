@@ -44,7 +44,7 @@ class Birdset(models.Model):
     )
 
     image = models.ImageField(upload_to="images/")
-    audio = models.FileField(upload_to="audio/")
+    audio = models.FileField(upload_to="audio/", blank=True, null=True)
 
     def __str__(self):
         return self.bird.name

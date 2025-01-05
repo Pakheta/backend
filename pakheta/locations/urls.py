@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-urlpatterns = [  # Changed from 'urls' to 'urlpatterns'
+urlpatterns = [
     path("", views.LocationListView.as_view()),
     path("<int:location_id>/", views.LocationView.as_view()),
     path("bird/", views.BirdLocationListView.as_view()),

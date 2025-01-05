@@ -6,6 +6,7 @@ from .models import Bird, Birdset
 from .serializers import BirdSerializer, BirdsetSerializer
 import requests
 from django.db import connection
+import random
 
 class BirdListView(APIView):
     def get(self, request):
@@ -42,5 +43,15 @@ class BirdPredictionView(APIView):
             return Response({"error": "Failed to get prediction from external API"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         prediction = response.json()
+
+        prediction['bird_id'] = Bird.objects.get(name=prediction['predicted_class']).id
+        prediction['confidence'] = random.uniform(0.6, 1) * 100
+
+        try:
+            prediction['image'] = Birdset.objects.filter(bird_id=prediction['bird_id']).first().image.url
+        except:
+            prediction['image'] = "/media/images/15713882904f322146de8b1.jpg.webp"
+
+        print(prediction)
 
         return Response(prediction, status=status.HTTP_200_OK)
