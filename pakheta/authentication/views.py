@@ -51,3 +51,5 @@ class SimpleAuthenticationView(APIView):
                 "authentication": False,
                 "error": "Invalid username or password."
             }, status=status.HTTP_401_UNAUTHORIZED)
+
+
