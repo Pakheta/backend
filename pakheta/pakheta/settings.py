@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'birds',
     'authentication',
     "locations",
-    'corsheaders',
+    'corsheaders',  # Keep only this one
     'callback',
     'chat',
 ]
@@ -174,7 +174,8 @@ CACHES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-INSTALLED_APPS += ['corsheaders']
-MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+# Remove or comment out this line since corsheaders is already in INSTALLED_APPS
+# INSTALLED_APPS += ['corsheaders']  
 
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 CORS_ALLOW_ALL_ORIGINS = True

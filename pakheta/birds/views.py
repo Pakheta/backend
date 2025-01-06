@@ -45,12 +45,15 @@ class BirdPredictionView(APIView):
         prediction = response.json()
 
         prediction['bird_id'] = Bird.objects.get(name=prediction['predicted_class']).id
+        
         prediction['confidence'] = random.uniform(0.6, 1) * 100
 
         try:
             prediction['image'] = Birdset.objects.filter(bird_id=prediction['bird_id']).first().image.url
         except:
             prediction['image'] = "/media/images/15713882904f322146de8b1.jpg.webp"
+
+        prediction['wiki-url'] = Bird.objects.get(name=prediction['predicted_class']).url
 
         print(prediction)
 
